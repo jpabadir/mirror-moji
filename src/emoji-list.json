@@ -1,0 +1,35 @@
+{
+  "smile": {
+    "expressions": {
+      "happy": 0.9,
+      "sad": 0,
+      "neutral": 0.1,
+      "angry": 0,
+      "surprised": 0,
+      "disgusted": 0,
+      "fearful": 0
+    }
+  },
+  "cry": {
+    "expressions": {
+      "happy": 0.9,
+      "sad": 0,
+      "neutral": 0.1,
+      "angry": 0,
+      "surprised": 0,
+      "disgusted": 0,
+      "fearful": 0
+    }
+  },
+  "angry": {
+    "expressions": {
+      "happy": 0.9,
+      "sad": 0,
+      "neutral": 0.1,
+      "angry": 0,
+      "surprised": 0,
+      "disgusted": 0,
+      "fearful": 0
+    }
+  }
+}
