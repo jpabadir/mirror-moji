@@ -11,13 +11,13 @@
 </template>
 
 <script>
-import * as faceapi from 'face-api.js';
+import * as faceapi from "face-api.js";
 
 Promise.all([
-    faceapi.nets.faceLandmark68Net.loadFromUri('/models'),
-    faceapi.nets.faceExpressionNet.loadFromUri('/models'),
-    faceapi.nets.faceRecognitionNet.loadFromUri('/models'),
-    faceapi.nets.ssdMobilenetv1.loadFromUri('/models')
+  faceapi.nets.faceLandmark68Net.loadFromUri("/models"),
+  faceapi.nets.faceExpressionNet.loadFromUri("/models"),
+  faceapi.nets.faceRecognitionNet.loadFromUri("/models"),
+  faceapi.nets.ssdMobilenetv1.loadFromUri("/models")
 ]);
 
 export default {
@@ -45,19 +45,24 @@ export default {
     async analyze() {
       this.takePicture();
       const picture = this.$refs.canvas;
-      const face = await faceapi.detectSingleFace(picture)
-        .withFaceLandmarks().withFaceExpressions();
-      if (typeof face !== 'undefined')
-      {
-        const arr = face.expressions.asSortedArray();
-        var txt = "";
-        for (var i = 0; i < arr.length; i++)
-        {
-          txt += arr[i].expression + ": " + arr[i].probability + "\n";
-        }
-        this.$refs.output.textContent = txt;
-        console.log(face.expressions.asSortedArray());
-      }
+      this.faceLandmarkStuff(picture);
+      // const face = await faceapi
+      //   .detectSingleFace(picture)
+      //   .withFaceLandmarks()
+      //   .withFaceExpressions();
+      // if (typeof face !== "undefined") {
+      //   const arr = face.expressions.asSortedArray();
+      //   var txt = "";
+      //   for (var i = 0; i < arr.length; i++) {
+      //     txt += arr[i].expression + ": " + arr[i].probability + "\n";
+      //   }
+      //   this.$refs.output.textContent = txt;
+      //   console.log(face.expressions.asSortedArray());
+      // }
+    },
+    async faceLandmarkStuff(facePic) {
+      const landmarks = await faceapi.detectFaceLandmarks(facePic);
+      console.log(landmarks.positions);
     },
     takePicture() {
       const picture = this.$refs.canvas;
@@ -81,7 +86,8 @@ export default {
   margin-top: 60px;
 }
 
-video, canvas {
+video,
+canvas {
   display: block;
   height: 600px;
   width: 800px;
