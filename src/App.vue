@@ -15,6 +15,8 @@
 <script>
 import HelloWorld from "./components/HelloWorld.vue";
 
+import * as faceapi from "face-api.js";
+
 export default {
   name: "app",
   components: {
@@ -36,7 +38,8 @@ export default {
   },
   methods: {
     analyze() {
-      console.log("analyzing");
+      // console.log("analyzing");
+      console.log(faceapi);
     }
   }
 };
