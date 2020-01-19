@@ -1,13 +1,24 @@
 <template>
-  <div id="app">
-    <textarea ref="inputText" rows="4" cols="50"></textarea>
-    <button @click="analyze">Analyze</button>
-    <br />
-    <br />
-    <textarea ref="output" rows="7" cols="50"></textarea>
-    <video autoplay="true" ref="videoElement">hey</video>
-    <canvas ref="canvas"></canvas>
-  </div>
+    <div id="app">
+      <video autoplay="true" ref="videoElement">hey</video>
+      <div class="overallArea">
+      <div class="textArea">
+      <textarea rows="4" cols="50" class="fieldSpace" ref="inputText"></textarea>
+    </div>
+
+    <div class="textArea2">
+      <button class="myButton" @click="analyze">Analyze</button>
+    </div>
+
+    </div>
+        <br/>
+        <br/>
+        <br>
+        <br>
+        <br>
+        <textarea ref="output" class="fieldSpace" rows="7" cols="50"></textarea>
+        <canvas ref="canvas"></canvas>
+    </div>
 </template>
 
 <script>
@@ -22,7 +33,6 @@ Promise.all([
   faceapi.nets.ssdMobilenetv1.loadFromUri("/models")
 ]);
 
-import * as faceapi from "face-api.js";
 
 export default {
   name: "app",
@@ -127,6 +137,52 @@ export default {
 </script>
 
 <style>
+.overallArea{
+  margin-top: 40px;
+}
+.textArea{
+float: left;
+    width: 54%;
+    text-align: right;
+}
+
+.textArea2{
+     float: left;
+    width: 17%;
+    margin-top: 14px;
+}
+.fieldSpace{
+  resize: none;
+  border-radius: 10px;
+  margin: 10px;
+}
+.myButton {
+	box-shadow: 0px 0px 0px 2px #9fb4f2;
+	background:linear-gradient(to bottom, #7892c2 5%, #476e9e 100%);
+	background-color:#7892c2;
+	border-radius:10px;
+	border:1px solid #4e6096;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:19px;
+	padding:12px 37px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #283966;
+}
+.myButton:hover {
+	background:linear-gradient(to bottom, #476e9e 5%, #7892c2 100%);
+	background-color:#476e9e;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+
+/* button css */
+
+
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -136,8 +192,7 @@ export default {
   margin-top: 60px;
 }
 
-video,
-canvas {
+video, canvas {
   display: block;
   height: 600px;
   width: 800px;
@@ -147,4 +202,6 @@ canvas {
 
   box-shadow: 4px 4px 4px 4px;
 }
+
+
 </style>
