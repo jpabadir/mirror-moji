@@ -1,29 +1,3 @@
 # mirror-moji
 
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Tired of looking through the list of emojis to find the one you want? With a click of a button, MirrorMoji will convert your facial expressions into the closest emoji! It's fast, simple and fun!
