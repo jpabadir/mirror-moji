@@ -1,33 +1,27 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld
-      msg="'Keeping people fed is my only peace of mind now, and I turn the 6 upside down, it's a 9 now.'"
-    />
     <textarea rows="4" cols="50"></textarea>
-    <button @click="takePicture">Analyze</button>
+    <button @click="analyze">Analyze</button>
     <br />
     <br />
+    <textarea ref="output" rows="7" cols="50"></textarea>
     <video autoplay="true" ref="videoElement">hey</video>
     <canvas ref="canvas"></canvas>
   </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
 import * as faceapi from 'face-api.js';
 
 Promise.all([
-    faceapi.nets.ssdMobilenetv1.loadFromUri('/models'),
-    faceapi.nets.ssdMobilenetv1.loadFromUri('/models'),
+    faceapi.nets.faceLandmark68Net.loadFromUri('/models'),
+    faceapi.nets.faceExpressionNet.loadFromUri('/models'),
+    faceapi.nets.faceRecognitionNet.loadFromUri('/models'),
     faceapi.nets.ssdMobilenetv1.loadFromUri('/models')
 ]);
 
 export default {
   name: "app",
-  components: {
-    HelloWorld
-  },
   mounted() {
     const _self = this;
     this.video = this.$refs.videoElement;
@@ -48,9 +42,22 @@ export default {
     };
   },
   methods: {
-    analyze() {
-      const detection = await faceapi.detectSingleFace(canvas)
-      console.log("analyzing");
+    async analyze() {
+      this.takePicture();
+      const picture = this.$refs.canvas;
+      const face = await faceapi.detectSingleFace(picture)
+        .withFaceLandmarks().withFaceExpressions();
+      if (typeof face !== 'undefined')
+      {
+        const arr = face.expressions.asSortedArray();
+        var txt = "";
+        for (var i = 0; i < arr.length; i++)
+        {
+          txt += arr[i].expression + ": " + arr[i].probability + "\n";
+        }
+        this.$refs.output.textContent = txt;
+        console.log(face.expressions.asSortedArray());
+      }
     },
     takePicture() {
       const picture = this.$refs.canvas;
@@ -74,9 +81,10 @@ export default {
   margin-top: 60px;
 }
 
-canvas {
+video, canvas {
   display: block;
-  width: 100%;
+  height: 600px;
+  width: 800px;
   max-width: 1280px;
 
   margin: 0 auto;
