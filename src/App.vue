@@ -7,6 +7,7 @@
     <textarea ref="output" rows="7" cols="50"></textarea>
     <video autoplay="true" ref="videoElement">hey</video>
     <canvas ref="canvas"></canvas>
+    <!-- <img src="./assets/emojis/cry.png" ref="emojipic" /> -->
   </div>
 </template>
 
@@ -45,6 +46,7 @@ export default {
     async analyze() {
       this.takePicture();
       const picture = this.$refs.canvas;
+      // const picture = this.$refs.emojipic;
       this.faceLandmarkStuff(picture);
       // const face = await faceapi
       //   .detectSingleFace(picture)
@@ -63,6 +65,12 @@ export default {
     async faceLandmarkStuff(facePic) {
       const landmarks = await faceapi.detectFaceLandmarks(facePic);
       console.log(landmarks.positions);
+      var flattenedInputtedPositions = [];
+      landmarks.positions.forEach(point => {
+        flattenedInputtedPositions.push(point.x);
+        flattenedInputtedPositions.push(point.y);
+      })
+      console.log(flattenedInputtedPositions);
     },
     takePicture() {
       const picture = this.$refs.canvas;
