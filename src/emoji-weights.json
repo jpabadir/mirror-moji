@@ -1,9 +1,9 @@
 {
   "smile": {
-    "expressions": {
-      "happy": 0.9,
+    "weights": {
+      "happy": 2,
       "sad": 0,
-      "neutral": 0.1,
+      "neutral": 0,
       "angry": 0,
       "surprised": 0,
       "disgusted": 0,
@@ -12,11 +12,11 @@
     "code": "0x1F642"
   },
   "frown": {
-    "expressions": {
+    "weights": {
       "happy": 0,
-      "sad": 0.4,
-      "neutral": 0.4,
-      "angry": 0.2,
+      "sad": 4,
+      "neutral": 1.5,
+      "angry": 0,
       "surprised": 0,
       "disgusted": 0,
       "fearful": 0
@@ -24,11 +24,11 @@
     "code": "0x1F641"
   },
   "angry": {
-    "expressions": {
-      "happy": 0.1,
+    "weights": {
+      "happy": 0,
       "sad": 0,
-      "neutral": 0.5,
-      "angry": 0.4,
+      "neutral": 1,
+      "angry": 4,
       "surprised": 0,
       "disgusted": 0,
       "fearful": 0
@@ -36,22 +36,22 @@
     "code": "0x1F621"
   },
   "surprised": {
-    "expressions": {
+    "weights": {
       "happy": 0,
       "sad": 0,
-      "neutral": 0.25,
-      "angry": 0.25,
-      "surprised": 0.5,
+      "neutral": 0.5,
+      "angry": 0.5,
+      "surprised": 2,
       "disgusted": 0,
       "fearful": 0
     },
     "code": "0x1F62E"
   },
   "neutral": {
-    "expressions": {
+    "weights": {
       "happy": 0,
       "sad": 0,
-      "neutral": 1,
+      "neutral": 2,
       "angry": 0,
       "surprised": 0,
       "disgusted": 0,
@@ -59,28 +59,28 @@
     },
     "code": "0x1F610"
   },
-  "smirking": {
-    "expressions": {
-      "happy": 0.8,
-      "sad": 0,
-      "neutral": 0.15,
-      "angry": 0.05,
-      "surprised": 0,
-      "disgusted": 0,
-      "fearful": 0
-    },
-    "code": "0x1F60F"
-  },
   "disgusted": {
-    "expressions": {
+    "weights": {
       "happy": 0,
       "sad": 0,
-      "neutral": 0.4,
-      "angry": 0.1,
+      "neutral": 0,
+      "angry": 0,
       "surprised": 0,
-      "disgusted": 0.5,
+      "disgusted": 6,
       "fearful": 0
     },
     "code": "0x1F922"
+  },
+  "screaming": {
+    "weights": {
+      "happy": 0,
+      "sad": 0,
+      "neutral": 0,
+      "angry": 0,
+      "surprised": 0,
+      "disgusted": 0,
+      "fearful": 10
+    },
+    "code": "0x1F631"
   }
 }
