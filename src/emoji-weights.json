@@ -1,0 +1,86 @@
+{
+  "smile": {
+    "weights": {
+      "happy": 2,
+      "sad": 0,
+      "neutral": 0,
+      "angry": 0,
+      "surprised": 0,
+      "disgusted": 0,
+      "fearful": 0
+    },
+    "code": "0x1F642"
+  },
+  "frown": {
+    "weights": {
+      "happy": 0,
+      "sad": 4,
+      "neutral": 1.5,
+      "angry": 0,
+      "surprised": 0,
+      "disgusted": 0,
+      "fearful": 0
+    },
+    "code": "0x1F641"
+  },
+  "angry": {
+    "weights": {
+      "happy": 0,
+      "sad": 0,
+      "neutral": 1,
+      "angry": 4,
+      "surprised": 0,
+      "disgusted": 0,
+      "fearful": 0
+    },
+    "code": "0x1F621"
+  },
+  "surprised": {
+    "weights": {
+      "happy": 0,
+      "sad": 0,
+      "neutral": 0.5,
+      "angry": 0.5,
+      "surprised": 2,
+      "disgusted": 0,
+      "fearful": 0
+    },
+    "code": "0x1F62E"
+  },
+  "neutral": {
+    "weights": {
+      "happy": 0,
+      "sad": 0,
+      "neutral": 2,
+      "angry": 0,
+      "surprised": 0,
+      "disgusted": 0,
+      "fearful": 0
+    },
+    "code": "0x1F610"
+  },
+  "disgusted": {
+    "weights": {
+      "happy": 0,
+      "sad": 0,
+      "neutral": 0,
+      "angry": 0,
+      "surprised": 0,
+      "disgusted": 6,
+      "fearful": 0
+    },
+    "code": "0x1F922"
+  },
+  "screaming": {
+    "weights": {
+      "happy": 0,
+      "sad": 0,
+      "neutral": 0,
+      "angry": 0,
+      "surprised": 0,
+      "disgusted": 0,
+      "fearful": 10
+    },
+    "code": "0x1F631"
+  }
+}

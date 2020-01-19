@@ -1,0 +1,86 @@
+{
+  "smile": {
+    "expressions-coefficients": {
+      "happy": 0.9,
+      "sad": 0,
+      "neutral": 0.1,
+      "angry": 0,
+      "surprised": 0,
+      "disgusted": 0,
+      "fearful": 0
+    },
+    "code": "0x1F642"
+  },
+  "frown": {
+    "expressions": {
+      "happy": 0,
+      "sad": 0.4,
+      "neutral": 0.4,
+      "angry": 0.2,
+      "surprised": 0,
+      "disgusted": 0,
+      "fearful": 0
+    },
+    "code": "0x1F641"
+  },
+  "angry": {
+    "expressions": {
+      "happy": 0.1,
+      "sad": 0,
+      "neutral": 0.5,
+      "angry": 0.4,
+      "surprised": 0,
+      "disgusted": 0,
+      "fearful": 0
+    },
+    "code": "0x1F621"
+  },
+  "surprised": {
+    "expressions": {
+      "happy": 0,
+      "sad": 0,
+      "neutral": 0.25,
+      "angry": 0.25,
+      "surprised": 0.5,
+      "disgusted": 0,
+      "fearful": 0
+    },
+    "code": "0x1F62E"
+  },
+  "neutral": {
+    "expressions": {
+      "happy": 0,
+      "sad": 0,
+      "neutral": 1,
+      "angry": 0,
+      "surprised": 0,
+      "disgusted": 0,
+      "fearful": 0
+    },
+    "code": "0x1F610"
+  },
+  "smirking": {
+    "expressions": {
+      "happy": 0.8,
+      "sad": 0,
+      "neutral": 0.15,
+      "angry": 0.05,
+      "surprised": 0,
+      "disgusted": 0,
+      "fearful": 0
+    },
+    "code": "0x1F60F"
+  },
+  "disgusted": {
+    "expressions": {
+      "happy": 0,
+      "sad": 0,
+      "neutral": 0.4,
+      "angry": 0.1,
+      "surprised": 0,
+      "disgusted": 0.5,
+      "fearful": 0
+    },
+    "code": "0x1F922"
+  }
+}

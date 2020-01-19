@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <textarea rows="4" cols="50"></textarea>
+    <textarea ref="inputText" rows="4" cols="50"></textarea>
     <button @click="analyze">Analyze</button>
     <br />
     <br />
@@ -12,12 +12,14 @@
 
 <script>
 import * as faceapi from 'face-api.js';
+import json from './emoji-list.json';
+import weights from './emoji-weights.json';
 
 Promise.all([
-    faceapi.nets.faceLandmark68Net.loadFromUri('/models'),
-    faceapi.nets.faceExpressionNet.loadFromUri('/models'),
-    faceapi.nets.faceRecognitionNet.loadFromUri('/models'),
-    faceapi.nets.ssdMobilenetv1.loadFromUri('/models')
+  faceapi.nets.faceLandmark68Net.loadFromUri("/models"),
+  faceapi.nets.faceExpressionNet.loadFromUri("/models"),
+  faceapi.nets.faceRecognitionNet.loadFromUri("/models"),
+  faceapi.nets.ssdMobilenetv1.loadFromUri("/models")
 ]);
 
 import * as faceapi from "face-api.js";
@@ -40,7 +42,9 @@ export default {
   },
   data() {
     return {
-      video: null
+      video: null,
+      emojiList: json,
+      emojiWeights: weights
     };
   },
   methods: {
@@ -52,15 +56,62 @@ export default {
         .withFaceLandmarks().withFaceExpressions();
       if (typeof face !== 'undefined')
       {
-        const arr = face.expressions.asSortedArray();
-        var txt = "";
-        for (var i = 0; i < arr.length; i++)
-        {
-          txt += arr[i].expression + ": " + arr[i].probability + "\n";
-        }
-        this.$refs.output.textContent = txt;
-        console.log(face.expressions.asSortedArray());
+        this.displayExpressions(face);
+
+        var sortedEmojis = this.getWeights(face);
+        var topEmoji = String.fromCodePoint(this.emojiWeights[sortedEmojis[0][0]].code);
+        console.log(topEmoji);
+        this.$refs.inputText.value += topEmoji;
       }
+    },
+    displayExpressions(face) {
+      const arr = face.expressions.asSortedArray();
+      var txt = "";
+      for (var i = 0; i < arr.length; i++)
+      {
+        txt += arr[i].expression + ": " + arr[i].probability + "\n";
+      }
+      this.$refs.output.textContent = txt;
+    },
+    getWeights(face) {
+      var emojiSimilarity = new Map();
+      Object.keys(this.emojiWeights).forEach(emoji => {
+        var sum = 0;
+        for (var expr in face.expressions)
+        {
+          var emojiWeight = this.emojiWeights[emoji].weights[expr];
+          var imgCoeff = face.expressions[expr];
+          var prod = imgCoeff * emojiWeight;
+          if (!isNaN(prod))
+          {
+            sum += prod;
+          }
+        }
+        emojiSimilarity.set(emoji, sum);
+      });
+      return Array.from(emojiSimilarity).sort((a, b) => {
+        return b[1] - a[1];
+      });
+    },
+    getEmojis(face) {
+      var emojiSimilarity = new Map();
+      Object.keys(this.emojiList).forEach(emoji => {
+        var sum = 0;
+        for (var expr in face.expressions)
+        {
+          var emojiCoeff = this.emojiList[emoji].expressions[expr];
+          var imgCoeff = face.expressions[expr];
+          var diff = Math.abs(imgCoeff - emojiCoeff);
+          if (!isNaN(diff))
+          {
+            sum += diff;
+          }
+        }
+        emojiSimilarity.set(emoji, sum);
+      });
+      return Array.from(emojiSimilarity).sort((a, b) => {
+        return a[1] - b[1];
+      });
     },
     takePicture() {
       const picture = this.$refs.canvas;
@@ -85,7 +136,8 @@ export default {
   margin-top: 60px;
 }
 
-video, canvas {
+video,
+canvas {
   display: block;
   height: 600px;
   width: 800px;
