@@ -14,6 +14,13 @@
 
 <script>
 import HelloWorld from "./components/HelloWorld.vue";
+import * as faceapi from 'face-api.js';
+
+Promise.all([
+    faceapi.nets.ssdMobilenetv1.loadFromUri('/models'),
+    faceapi.nets.ssdMobilenetv1.loadFromUri('/models'),
+    faceapi.nets.ssdMobilenetv1.loadFromUri('/models')
+]);
 
 export default {
   name: "app",
@@ -36,6 +43,7 @@ export default {
   },
   methods: {
     analyze() {
+      const detection = await faceapi.detectSingleFace(canvas)
       console.log("analyzing");
     }
   }
