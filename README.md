@@ -1,4 +1,4 @@
-# mirror-moji
+# MirrorMoji
 
 Tired of looking through the list of emojis to find the one you want? With MirrorMoji, just smile at the camera and insert the desired emoji in seconds! It's fast, simple and fun! Currently supports: smile, frown, angry, disgust, surprise and neutral emojis.
 
